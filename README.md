@@ -1,4 +1,4 @@
-# :dolphin::flipper: Estudo com consultas avançadas em SQL, usando MySQL
+# :dolphin: Estudo com consultas avançadas em SQL, usando MySQL
 
 Curso da plataforma Alura
 
@@ -33,3 +33,10 @@ ___
 ### :open_file_folder: Simulação de casos de consulta específicos:
 1. Consulta de relatório para averiguar quais clientes haviam respeitado seus limites de compra mensal, conforme seu cadastro. 
 2. Relatório da participação nas vendas dos produtos por sabor e tamanho no ano de 2016, aplicando diversos conceitos do treinamento, numa mesma consulta SQL.
+
+
+![Relatório de vendas invalidas](https://user-images.githubusercontent.com/74005813/201406891-94f18b8a-8b0d-40cd-86ba-372968df72e1.jpg)
+
+
+
+![relatório de vendas tamanho](https://user-images.githubusercontent.com/74005813/201407002-142a1114-17c1-4fc5-83de-c350aa2b5085.jpg)
