@@ -1,0 +1,7 @@
+/*estrutura do LIKE - modo especial para selecionar um conjunto específico de caracteres dentro dos campos*/
+
+SELECT * FROM tabela_de_produtos WHERE SABOR LIKE '%Maça';
+
+SELECT * FROM tabela_de_produtos WHERE SABOR LIKE '%Maça' AND EMBALAGEM = 'Pet';
+
+SELECT * FROM tabela_de_clientes WHERE NOME LIKE '%Mattos';

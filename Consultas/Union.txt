@@ -1,0 +1,25 @@
+/* UNION - permite unir duas consultas em uma só. Exemplo de distinções entre UNION e UNION ALL. 
+PS: é preciso que as tabelas em questão tenham o mesmo número de campos e que seus tipos coincidam.*/
+
+SELECT DISTINCT BAIRRO FROM tabela_de_clientes;
+SELECT DISTINCT BAIRRO FROM tabela_de_vendedores;
+
+SELECT DISTINCT BAIRRO FROM tabela_de_clientes
+UNION
+SELECT DISTINCT BAIRRO FROM tabela_de_vendedores;
+
+SELECT DISTINCT BAIRRO FROM tabela_de_clientes
+UNION ALL
+SELECT DISTINCT BAIRRO FROM tabela_de_vendedores;
+
+SELECT DISTINCT BAIRRO, NOME FROM tabela_de_clientes
+UNION ALL
+SELECT DISTINCT BAIRRO, NOME FROM tabela_de_vendedores;
+
+SELECT DISTINCT BAIRRO, NOME, 'CLIENTE' AS TIPO FROM tabela_de_clientes
+UNION ALL
+SELECT DISTINCT BAIRRO, NOME, 'VENDEDOR' AS TIPO FROM tabela_de_vendedores;
+
+SELECT DISTINCT BAIRRO, NOME, 'CLIENTE' AS TIPO, CPF FROM tabela_de_clientes
+UNION ALL
+SELECT DISTINCT BAIRRO, NOME, 'VENDEDOR' AS TIPO, MATRICULA FROM tabela_de_vendedores;

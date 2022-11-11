@@ -1,0 +1,50 @@
+/* tipos de JOIN, comandos que juntam tabelas em um único SELECT. Descobrimos que, dependendo do tipo usado, obtemos resultados bem diferentes*/
+
+
+/*INNER JOIN*/
+SELECT * FROM tabela_de_vendedores A INNER JOIN notas_fiscais B ON A.MATRICULA = B.MATRICULA;
+
+SELECT A.MATRICULA, A.NOME, COUNT(*) FROM tabela_de_vendedores A INNER JOIN notas_fiscais B ON A.MATRICULA = B.MATRICULA GROUP BY A.MATRICULA, A.NOME;
+
+SELECT A.MATRICULA, A.NOME, COUNT(*) FROM tabela_de_vendedores A, notas_fiscais B WHERE A.MATRICULA = B.MATRICULA GROUP BY A.MATRICULA, A.NOME;
+
+SELECT YEAR(DATA_VENDA), SUM(QUANTIDADE * PRECO) AS FATURAMENTO FROM notas_fiscais NF INNER JOIN itens_notas_fiscais INF ON NF.NUMERO = INF.NUMERO
+GROUP BY YEAR(DATA_VENDA);
+
+
+/* LEFT JOIN, RIGHT JOIN*/
+SELECT CPF, COUNT(*) FROM NOTAS_FISCAIS GROUP BY CPF;
+
+SELECT DISTINCT A.CPF, A.NOME, B.CPF FROM tabela_de_clientes A INNER JOIN notas_fiscais B ON A.CPF = B.CPF;
+
+SELECT DISTINCT A.CPF, A.NOME, B.CPF FROM tabela_de_clientes A LEFT JOIN notas_fiscais B ON A.CPF = B.CPF;
+
+SELECT DISTINCT A.CPF, A.NOME, B.CPF FROM tabela_de_clientes A LEFT JOIN notas_fiscais B ON A.CPF = B.CPF WHERE B.CPF IS NULL;
+
+SELECT DISTINCT A.CPF, A.NOME, B.CPF FROM tabela_de_clientes A LEFT JOIN notas_fiscais B ON A.CPF = B.CPF WHERE B.CPF IS NULL AND YEAR(B.DATA_VENDA) = 2015;
+
+SELECT DISTINCT A.CPF, A.NOME, B.CPF FROM notas_fiscais B RIGHT JOIN tabela_de_clientes A ON A.CPF = B.CPF WHERE B.CPF IS NULL;
+
+/*CROSS JOIN, FULL JOIN*/
+SELECT * FROM tabela_de_vendedores INNER JOIN tabela_de_clientes ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
+
+SELECT tabela_de_vendedores.BAIRRO, tabela_de_vendedores.NOME, DE_FERIAS, tabela_de_clientes.BAIRRO, tabela_de_clientes.NOME
+FROM tabela_de_vendedores INNER JOIN tabela_de_clientes ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
+
+SELECT tabela_de_vendedores.BAIRRO, tabela_de_vendedores.NOME, DE_FERIAS, tabela_de_clientes.BAIRRO, tabela_de_clientes.NOME
+FROM tabela_de_vendedores LEFT JOIN tabela_de_clientes ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
+
+SELECT tabela_de_vendedores.BAIRRO, tabela_de_vendedores.NOME, DE_FERIAS, tabela_de_clientes.BAIRRO, tabela_de_clientes.NOME
+FROM tabela_de_vendedores RIGHT JOIN tabela_de_clientes ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
+
+SELECT tabela_de_vendedores.BAIRRO, tabela_de_vendedores.NOME, DE_FERIAS, tabela_de_clientes.BAIRRO, tabela_de_clientes.NOME
+FROM tabela_de_vendedores, tabela_de_clientes;
+
+SELECT tabela_de_vendedores.BAIRRO, tabela_de_vendedores.NOME, DE_FERIAS, tabela_de_clientes.BAIRRO, tabela_de_clientes.NOME 
+
+/* No MySQL não existe o FULL JOIN, usando o UNION em seu lugar para obter o mesmo resultado.*/
+FROM tabela_de_vendedores LEFT JOIN tabela_de_clientes ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO
+UNION
+SELECT tabela_de_vendedores.BAIRRO, tabela_de_vendedores.NOME, DE_FERIAS, tabela_de_clientes.BAIRRO, tabela_de_clientes.NOME
+FROM tabela_de_vendedores RIGHT JOIN tabela_de_clientes ON tabela_de_vendedores.BAIRRO = tabela_de_clientes.BAIRRO;
+

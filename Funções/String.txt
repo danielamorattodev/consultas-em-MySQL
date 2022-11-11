@@ -1,0 +1,18 @@
+SELECT LTRIM('    olá') AS RESULTADO; /*alinha a esquerda*/
+
+SELECT RTRIM('OLÁ    ') AS RESULTADO; /*alinha a direita*/
+
+SELECT TRIM('   OLÁ   ') AS RESULTADO; /*ajusta os dois lados*/
+
+SELECT CONCAT('OLÁ', ' ', 'TUDO BEM', '?') AS RESULTADO; /*concatena setenças*/
+
+SELECT UPPER('Olá, tudo bem?') AS RESULTADO; /*Deixa o texto em UpCase*/
+
+SELECT LOWER('OLÁ, TUDO BEM?') AS RESULTADO; /*Deixa o texto em down case*/
+
+SELECT SUBSTRING('OLÁ, TUDO BEM?', 6, 4) AS RESULTADO; /*conta os caracteres*/
+
+SELECT CONCAT(NOME, '( ', CPF, ') ') AS RESULTADO FROM tabela_de_clientes;
+
+SELECT NOME, CONCAT(ENDERECO_1, ' ', BAIRRO, ' ', CIDADE, ' ', ESTADO) AS RESULTADO FROM tabela_de_clientes;
+
